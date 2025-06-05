@@ -1,0 +1,8 @@
+.featured-item {
+  
+   background-image: url(../../../assets//home/featured.jpg);
+      background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+    color: white;             /* টেক্সট কালার কালো করলে ভালো দেখায় */
+}
