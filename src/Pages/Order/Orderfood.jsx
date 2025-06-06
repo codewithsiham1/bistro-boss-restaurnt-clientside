@@ -86,7 +86,7 @@ const Orderfood = () => {
   return (
     <div className="px-4 md:px-10">
              <Helmet>
-                <title>Bistro Boss |Order Food</title>
+             <title>Bistro Boss | Order Food</title>
               </Helmet>
       <Orderbanner />
 
