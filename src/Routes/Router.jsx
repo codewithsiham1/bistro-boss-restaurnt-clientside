@@ -11,6 +11,10 @@ import Login from "../Authentication/Login/Login";
 import Signup from "../Authentication/Signup/Signup";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Cart from "../Pages/UserDashboard/Cart/Cart";
+import Privateroute from "./Privateroute/Privateroute";
+import Alluser from "../Pages/UserDashboard/Alluser/Alluser";
+import Additem from "../Pages/UserDashboard/Additem/Additem";
+import AdminRoute from "./AdminRoute/AdminRoute";
   const router=createBrowserRouter([
    {
     path:"/",
@@ -49,11 +53,20 @@ import Cart from "../Pages/UserDashboard/Cart/Cart";
 // dashboard
 {
     path:"dashboard",
-    element:<Dashboard></Dashboard>,
+    element:<Privateroute><Dashboard></Dashboard></Privateroute>,
     children:[
         {
             path:"cart",
             element:<Cart></Cart>
+        },
+        // admin route
+        {
+            path:"alluser",
+            element:<AdminRoute><Alluser></Alluser></AdminRoute>
+        },
+        {
+            path:"additems",
+            element:<AdminRoute><Additem></Additem></AdminRoute>
         }
     ]
 }

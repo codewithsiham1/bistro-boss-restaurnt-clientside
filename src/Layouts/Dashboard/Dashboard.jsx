@@ -1,11 +1,14 @@
 import React from 'react';
-import { FaCalendar, FaHome, FaShoppingCart, FaPhoneAlt, FaStore } from 'react-icons/fa';
-import { MdEventAvailable, MdPayments, MdReviews, MdMenuBook } from 'react-icons/md';
+import { FaCalendar, FaHome, FaShoppingCart, FaPhoneAlt, FaStore, FaTachometerAlt, FaPlusSquare, FaClipboardCheck, FaUsersCog } from 'react-icons/fa';
+import { MdEventAvailable, MdPayments, MdReviews, MdMenuBook, MdManageAccounts } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router-dom';
 import Usecart from '../../Hooks/Usecart';
+import Useadmin from '../../Hooks/Useadmin';
 
 const Dashboard = () => {
     const [cart]=Usecart();
+    // TODO:get isAdmin value  from the database
+    const [isAdmin]=Useadmin();
   return (
     <div className='flex min-h-screen bg-gray-100'>
       {/* Sidebar */}
@@ -13,7 +16,76 @@ const Dashboard = () => {
         <h2 className="text-white text-2xl font-extrabold mb-6">User Dashboard</h2>
         
         {/* User Dashboard Links */}
-        <ul className="space-y-3 mb-8">
+       {
+        isAdmin ?<>
+       <ul className="space-y-3 mb-8">
+          <li>
+            <NavLink
+              to="/dashboard/adminHome"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
+                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
+                }`
+              }
+            >
+               <FaTachometerAlt /> Admin Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/additems"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
+                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
+                }`
+              }
+            >
+              <FaPlusSquare /> Add Items
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/manageitens"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
+                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
+                }`
+              }
+            >
+               <MdManageAccounts /> Manage Items
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/manageboking"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
+                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
+                }`
+              }
+            >
+               <FaClipboardCheck />Manage Booking
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/alluser"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
+                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
+                }`
+              }
+            >
+              <FaUsersCog /> All Users
+            </NavLink>
+          </li>
+         
+        </ul>
+        </>
+        :
+
+        <>
+       <ul className="space-y-3 mb-8">
           <li>
             <NavLink
               to="/dashboard/userHome"
@@ -87,6 +159,8 @@ const Dashboard = () => {
             </NavLink>
           </li>
         </ul>
+        </>
+       }
 
         {/* Divider */}
         <hr className="border-white opacity-40 mb-4" />

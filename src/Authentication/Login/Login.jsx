@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
 import authimg from "../../assets/others/authentication.png";
 import auth1 from "../../assets/others/authentication1.png";
+import Sociallogin from '../../Shared/Social/Sociallogin';
 
 const Login = () => {
   const captchaRef = useRef(null);
@@ -27,6 +28,7 @@ const Login = () => {
 
     signinuser(email, password)
       .then(() => {
+
         Swal.fire({
           toast: true,
           position: "top-end",
@@ -145,7 +147,7 @@ const Login = () => {
                 </button>
               </div>
             </form>
-
+              <Sociallogin></Sociallogin>
             {/* Sign Up Redirect */}
             <p className="mt-4 text-center text-sm text-gray-600">
               New here?{" "}

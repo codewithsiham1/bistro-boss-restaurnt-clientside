@@ -6,10 +6,14 @@ import authimg from "../../assets/others/authentication.png";
 import auth2 from "../../assets/others/authentication2.png";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import { useNavigate } from "react-router-dom";
+import Sociallogin from "../../Shared/Social/Sociallogin";
 
 const Signup = () => {
-  const { createuser, updateuserprofile, signInWithGoogle } = useContext(Authcontext);
-
+  const { createuser, updateuserprofile } = useContext(Authcontext);
+const axiospublic=UseAxiosPublic();
+const navigate=useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,11 +28,25 @@ const Signup = () => {
 
         updateuserprofile(data.name, data.photoURL)
           .then(() => {
-            Swal.fire({
-              icon: "success",
-              title: "Signup Successful",
-              text: "Welcome to Bistro Boss!",
-            });
+            // create user entry in the database
+            const userInfo={
+              name:data.name,
+              email:data.email
+            }
+            axiospublic.post("/user",userInfo)
+            .then(res=>{
+              if(res.data.insertedId){
+                Swal.fire({
+                  icon: "success",
+                  title: "Signup Successful",
+                  text: "Welcome to Bistro Boss!",
+                })
+                .then(()=>{
+                  navigate('/')
+                })
+              }
+            })
+         
             reset();
           })
           .catch((error) => {
@@ -48,23 +66,6 @@ const Signup = () => {
       });
   };
 
-  const handleGoogleLogin = () => {
-    signInWithGoogle()
-      .then((result) => {
-        Swal.fire({
-          icon: "success",
-          title: "Google Sign-in Successful",
-          text: `Welcome ${result.user.displayName || "User"}!`,
-        });
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Google Sign-in Failed",
-          text: error.message,
-        });
-      });
-  };
 
   return (
     <>
@@ -179,15 +180,7 @@ const Signup = () => {
               <div className="divider px-8">OR</div>
 
               {/* Google Sign-in Button */}
-              <div className="px-8 pb-6">
-                <button
-                  onClick={handleGoogleLogin}
-                  className="btn w-full bg-white text-black hover:bg-gray-100 border border-gray-300"
-                >
-                  <FcGoogle className="text-2xl mr-2" />
-                  Continue with Google
-                </button>
-              </div>
+           <Sociallogin></Sociallogin>
             </div>
           </div>
         </div>
