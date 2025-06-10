@@ -5,7 +5,7 @@ const Sectiontitle = ({ heading, subHeading, headingColor, subHeadingColor }) =>
       <p className={`text-sm italic mb-2 ${subHeadingColor || "text-yellow-400"}`}>
         --- {subHeading} ---
       </p>
-      <h3 className={`text-3xl border-b-4 border-t-4 w-3/12 font-bold uppercase ${headingColor || "text-black"}`}>
+      <h3 className={`text-2xl border-b-4 border-t-4 w-3/12 font-bold uppercase ${headingColor || "text-black"}`}>
         {heading}
       </h3>
     </div>

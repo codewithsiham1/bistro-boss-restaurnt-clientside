@@ -15,6 +15,8 @@ import Privateroute from "./Privateroute/Privateroute";
 import Alluser from "../Pages/UserDashboard/Alluser/Alluser";
 import Additem from "../Pages/UserDashboard/Additem/Additem";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import ManageItem from "../Pages/UserDashboard/ManagrItem/ManageItem";
+import Updateitem from "../Pages/UserDashboard/Updataitem/Updateitem";
   const router=createBrowserRouter([
    {
     path:"/",
@@ -67,7 +69,22 @@ import AdminRoute from "./AdminRoute/AdminRoute";
         {
             path:"additems",
             element:<AdminRoute><Additem></Additem></AdminRoute>
+        },
+        {
+            path:"manageitens",
+            element:<AdminRoute><ManageItem></ManageItem></AdminRoute>,
+        }, 
+        {
+            path:'updateitem/:id',
+            element:<AdminRoute><Updateitem></Updateitem></AdminRoute>,
+           loader: ({ params }) =>
+  fetch(`http://localhost:5000/menu/${params.id}`, {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('access-token')}`
+    }
+  })
         }
+
     ]
 }
   ])
