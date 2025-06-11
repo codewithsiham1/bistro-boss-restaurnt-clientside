@@ -4,10 +4,12 @@ import { Authcontext } from '../../Providers/Authprovider';
 import Swal from 'sweetalert2';
 import { FaShoppingCart } from 'react-icons/fa';
 import Usecart from '../../Hooks/Usecart';
+import Useadmin from '../../Hooks/Useadmin';
 
 const Navbar = () => {
   const { user, logout } = useContext(Authcontext);
   const [cart]=Usecart()
+  const [isAdmin]=Useadmin()
   const handleLogout = () => {
     logout()
       .then(() => {
@@ -32,9 +34,15 @@ const Navbar = () => {
     <>
       <li><NavLink to="/"   className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "text-white"}>Home</NavLink></li>
       <li><NavLink to="/contact"  className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "text-white"}>Contact Us</NavLink></li>
-      <li><NavLink to="/dashboard"  className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "text-white"}>Dashboard</NavLink></li>
+    
       <li><NavLink to="/menu"  className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "text-white"}>Our Menu</NavLink></li>
       <li><NavLink to="/order-food/salad"  className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "text-white"}>Order Food</NavLink></li>
+      {
+        user && isAdmin &&  <li><NavLink to="/dashboard/adminHome"  className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "text-white"}>Dashboard</NavLink></li>
+      }
+      {
+        user && !isAdmin &&  <li><NavLink to="/dashboard/userHome"  className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "text-white"}>Dashboard</NavLink></li>
+      }
       <li>
         <Link to="/dashboard/cart">
         <button className="btn">
