@@ -1,103 +1,103 @@
 import React, { useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
-const Updateitem = () => {
-  const item = useLoaderData();
-  const navigate = useNavigate();
+const UpdateItemForm = () => {
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
+  const [recipe, setRecipe] = useState('');
 
-  const [formData, setFormData] = useState({
-    name: item.name || '',
-    image: item.image || '',
-    price: item.price || '',
-    category: item.category || '',
-    recipe: item.recipe || ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const res = await fetch(`http://localhost:5000/menu/${item._id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem('access-token')}`
-      },
-      body: JSON.stringify(formData)
-    });
-
-    const data = await res.json();
-
-    if (data.modifiedCount > 0) {
-      Swal.fire('Updated!', 'Item has been updated.', 'success');
-      navigate('/dashboard/manageitens');
-    } else {
-      Swal.fire('Error', 'Something went wrong', 'error');
-    }
+    // Just console log for now, no backend
+    console.log({ name, image, price, category, recipe });
+    alert('Form submitted! Check console for data.');
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-semibold mb-4">Update Item</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="input input-bordered w-full"
-          />
-        </div>
-        <div>
-          <label>Image URL:</label>
-          <input
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            className="input input-bordered w-full"
-          />
-        </div>
-        <div>
-          <label>Price:</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            className="input input-bordered w-full"
-          />
-        </div>
-        <div>
-          <label>Category:</label>
-          <input
-            type="text"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className="input input-bordered w-full"
-          />
-        </div>
-        <div>
-          <label>Recipe Details:</label>
-          <textarea
-            name="recipe"
-            value={formData.recipe}
-            onChange={handleChange}
-            className="textarea textarea-bordered w-full"
-          ></textarea>
-        </div>
-        <button type="submit" className="btn btn-primary w-full">Update Item</button>
-      </form>
+    <div className="hero bg-base-200 min-h-screen">
+      <div className="hero-content flex-col w-full max-w-md">
+        <h2 className="text-3xl font-bold mb-6 text-center">Update Item</h2>
+
+        <form onSubmit={handleSubmit} className="card bg-base-100 shadow-lg p-6 rounded-lg w-full">
+          <div className="form-control mb-4">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Item Name"
+              className="input input-bordered"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-control mb-4">
+            <label className="label">
+              <span className="label-text">Image URL</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Image URL"
+              className="input input-bordered"
+              value={image}
+              onChange={e => setImage(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-control mb-4">
+            <label className="label">
+              <span className="label-text">Price</span>
+            </label>
+            <input
+              type="number"
+              placeholder="Price"
+              className="input input-bordered"
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              min={0}
+              step="0.01"
+              required
+            />
+          </div>
+
+          <div className="form-control mb-4">
+            <label className="label">
+              <span className="label-text">Category</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Category"
+              className="input input-bordered"
+              value={category}
+              onChange={e => setCategory(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-control mb-6">
+            <label className="label">
+              <span className="label-text">Recipe</span>
+            </label>
+            <textarea
+              placeholder="Recipe details"
+              className="textarea textarea-bordered h-24"
+              value={recipe}
+              onChange={e => setRecipe(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary w-full">
+            Update Item
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default Updateitem;
+export default UpdateItemForm;

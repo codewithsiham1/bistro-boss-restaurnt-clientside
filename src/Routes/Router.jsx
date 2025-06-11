@@ -21,6 +21,7 @@ import Payment from "../Pages/UserDashboard/Payment/Payment";
 import Paymenthistory from "../Pages/UserDashboard/Paymenthistory/Paymenthistory";
 import Adminhome from "../Pages/UserDashboard/Adminhome/Adminhome";
 import Usehome from "../Pages/UserDashboard/Userhome/Usehome";
+import ManageBooking from "../Pages/UserDashboard/ManageBooking/ManageBooking";
   const router=createBrowserRouter([
    {
     path:"/",
@@ -79,6 +80,10 @@ import Usehome from "../Pages/UserDashboard/Userhome/Usehome";
        element:<Paymenthistory></Paymenthistory>
         },
         // admin route
+        {
+       path:"manageboking",
+       element:<ManageBooking></ManageBooking>
+        },
         {
             path:"adminHome",
             element:<AdminRoute><Adminhome></Adminhome></AdminRoute>

@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React from 'react';
 import { MdEmail, MdPerson, MdMessage } from 'react-icons/md';
-import ReCAPTCHA from 'react-google-recaptcha';
+import Swal from 'sweetalert2';
 
 const ContactForm = () => {
-  const [captchaValue, setCaptchaValue] = useState(null);
-
-  const handleCaptchaChange = (value) => {
-    setCaptchaValue(value);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
-    if (!captchaValue) {
-      alert("Please verify you are not a robot.");
-      return;
+  const form = e.target;
+  const name = form.name.value;
+  const email = form.email.value;
+  const message = form.message.value;
+  const contactData = { name, email, message };
+    const res=await axios.post("http://localhost:5000/contact",contactData)
+    if((res.data.insertedId)){
+      Swal.fire('Message Sent!', 'We will get back to you soon.', 'success');
+      form.reset(); 
     }
-
-    // Form submission logic goes here
-    alert("Form submitted successfully!");
+    else{
+       Swal.fire('Error!', 'Something went wrong.', 'error');
+    }
   };
 
   return (
@@ -35,6 +35,7 @@ const ContactForm = () => {
           <input
             type="text"
             placeholder="Enter your name"
+            name='name'
             className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFA200]"
             required
           />
@@ -46,6 +47,7 @@ const ContactForm = () => {
           </label>
           <input
             type="email"
+            name='email'
             placeholder="Enter your email"
             className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFA200]"
             required
@@ -59,16 +61,11 @@ const ContactForm = () => {
           <textarea
             placeholder="Write your message"
             rows="5"
+            name='message'
             className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFA200]"
             required
           ></textarea>
         </div>
-
-        {/* Google reCAPTCHA */}
-        <ReCAPTCHA
-          sitekey="YOUR_SITE_KEY_HERE"
-          onChange={handleCaptchaChange}
-        />
 
         <button
           type="submit"
