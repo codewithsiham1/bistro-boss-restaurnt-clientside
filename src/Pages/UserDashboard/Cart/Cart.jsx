@@ -4,6 +4,7 @@ import Usecart from '../../../Hooks/Usecart';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import Sectiontitle from '../../../Components/Sectiontitle/Sectiontitle';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [cart,refetch] = Usecart();
@@ -47,22 +48,17 @@ const handleDelete = (id) => {
       <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-4'>
         <h2 className="text-2xl font-semibold">Total Orders: {cart.length}</h2>
         <h2 className="text-2xl font-semibold">Total Price: ৳{totalprice}</h2>
-        <button className='btn btn-outline btn-primary'>Pay</button>
+     {
+      cart.length ?  <Link to="/dashboard/payment"> 
+       <button  className='btn btn-outline btn-primary'>Pay</button>
+       </Link>: <button disabled={!cart.length} className='btn btn-outline btn-primary'>Pay</button>
+     }
       </div>
 
       {/* Cart Table */}
       <div className="overflow-x-auto bg-white rounded shadow">
         <table className="table">
-          {/* Table Head */}
-          <thead className='bg-red-500 text-white'>
-            <tr>
-              <th>Number</th>
-              <th>Item Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+          
 
           {/* Table Body */}
           <tbody>

@@ -17,6 +17,8 @@ import Additem from "../Pages/UserDashboard/Additem/Additem";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import ManageItem from "../Pages/UserDashboard/ManagrItem/ManageItem";
 import Updateitem from "../Pages/UserDashboard/Updataitem/Updateitem";
+import Payment from "../Pages/UserDashboard/Payment/Payment";
+import Paymenthistory from "../Pages/UserDashboard/Paymenthistory/Paymenthistory";
   const router=createBrowserRouter([
    {
     path:"/",
@@ -60,6 +62,14 @@ import Updateitem from "../Pages/UserDashboard/Updataitem/Updateitem";
         {
             path:"cart",
             element:<Cart></Cart>
+        },
+        {
+            path:'payment',
+            element:<Payment></Payment>
+        },
+        {
+       path:"paymenthistory",
+       element:<Paymenthistory></Paymenthistory>
         },
         // admin route
         {
