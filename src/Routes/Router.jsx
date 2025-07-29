@@ -104,7 +104,7 @@ import ManageBooking from "../Pages/UserDashboard/ManageBooking/ManageBooking";
             path:'updateitem/:id',
             element:<AdminRoute><Updateitem></Updateitem></AdminRoute>,
            loader: ({ params }) =>
-  fetch(`http://localhost:5000/menu/${params.id}`, {
+  fetch(`https://bistro-boss-restaurant-server-ebon.vercel.appmenu/${params.id}`, {
     headers: {
       authorization: `Bearer ${localStorage.getItem('access-token')}`
     }

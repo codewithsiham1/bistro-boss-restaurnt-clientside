@@ -146,7 +146,7 @@ const Login = () => {
                   Login
                 </button>
               </div>
-            </form>
+            </form>   
               <Sociallogin></Sociallogin>
             {/* Sign Up Redirect */}
             <p className="mt-4 text-center text-sm text-gray-600">

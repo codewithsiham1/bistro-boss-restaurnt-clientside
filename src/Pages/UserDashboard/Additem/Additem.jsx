@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Sectiontitle from '../../../Components/Sectiontitle/Sectiontitle';
-import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+
 import UseAxiosSecure from"../../../Hooks/UseAxiosSecure"
 import Swal from 'sweetalert2';
+import UseAxiosPublic from '../../../Hooks/UseAxiosPublic';
 const IMAGE_HOSTING_KEY = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_API = `https://api.imgbb.com/1/upload?key=${IMAGE_HOSTING_KEY}`;
 
 const Additem = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = UseAxiosPublic();
     const axiosSecure=UseAxiosSecure()
     const [formData, setFormData] = useState({
         name: '',

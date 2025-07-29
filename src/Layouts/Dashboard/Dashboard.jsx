@@ -111,16 +111,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/dashboard/reservation"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
-                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
-                }`
-              }
-            >
-              <FaCalendar /> Reservation
-            </NavLink>
+          
           </li>
           <li>
             <NavLink
@@ -147,28 +138,10 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/dashboard/addreview"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
-                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
-                }`
-              }
-            >
-              <MdReviews /> Add Review
-            </NavLink>
+          
           </li>
           <li>
-            <NavLink
-              to="/dashboard/mybooking"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 ${
-                  isActive ? 'bg-white text-red-600 font-bold shadow' : 'text-white hover:bg-white/20'
-                }`
-              }
-            >
-              <MdEventAvailable /> My Booking
-            </NavLink>
+         
           </li>
         </ul>
         </>
