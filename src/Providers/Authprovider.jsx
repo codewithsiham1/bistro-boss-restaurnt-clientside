@@ -4,8 +4,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  signInWithPopup,              // ✅ added
-  GoogleAuthProvider,           // ✅ added
+  signInWithPopup,
+  GoogleAuthProvider,         
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase.config";

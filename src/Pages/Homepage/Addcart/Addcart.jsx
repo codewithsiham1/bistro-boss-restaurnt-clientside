@@ -20,7 +20,7 @@ const Addcart = () => {
   }, []);
 
   const handleAddToCart = (item) => {
-    // এখানে তুমি চাইলে cart logic বা toast যুক্ত করতে পারো
+    
     console.log('Added to cart:', item.name);
     alert(`✅ ${item.name} added to cart!`);
   };
@@ -28,7 +28,7 @@ const Addcart = () => {
   return (
  <section>
     <Sectiontitle heading={" CHEFE RECOMMENDS  "} subHeading={"Should Try"}></Sectiontitle>
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mt-5">
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-12 mt-5">
       {cards.map(item => (
         <div key={item._id} className="card bg-base-100 shadow-xl w-96">
           <figure>

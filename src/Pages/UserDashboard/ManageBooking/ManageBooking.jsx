@@ -6,7 +6,7 @@ const ManageBooking = () => {
     const {data:message=[]}=useQuery({
         queryKey:['contact-message'],
         queryFn:async()=>{
-            const res=await axios.get('https://bistro-boss-restaurant-serverside.onrender.com//');
+            const res=await axios.get('http://localhost:5000/');
             return res.data
         }
     })
