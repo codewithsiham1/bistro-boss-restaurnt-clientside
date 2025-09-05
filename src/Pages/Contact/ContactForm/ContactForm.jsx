@@ -11,7 +11,7 @@ const ContactForm = () => {
   const email = form.email.value;
   const message = form.message.value;
   const contactData = { name, email, message };
-    const res=await axios.post("http://localhost:5000/",contactData)
+    const res=await axios.post("https://bistro-boss-restaurant-serverside.onrender.com/",contactData)
     if((res.data.insertedId)){
       Swal.fire('Message Sent!', 'We will get back to you soon.', 'success');
       form.reset(); 
